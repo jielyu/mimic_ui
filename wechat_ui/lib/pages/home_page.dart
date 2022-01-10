@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
 }
 
 final PersistentTabController _controller =
-    PersistentTabController(initialIndex: 1);
+    PersistentTabController(initialIndex: 0);
 
 class BottonNavBarFramework extends StatelessWidget {
   const BottonNavBarFramework({Key? key}) : super(key: key);
@@ -53,7 +53,7 @@ class BottonNavBarFramework extends StatelessWidget {
         duration: Duration(milliseconds: 200),
       ),
       navBarStyle:
-          NavBarStyle.style3, // Choose the nav bar style with this property.
+          NavBarStyle.style6, // Choose the nav bar style with this property.
       onItemSelected: (int i) {
         // ignore: avoid_print
         print(
@@ -65,7 +65,7 @@ class BottonNavBarFramework extends StatelessWidget {
   List<Widget> _buildScreens() {
     return [
       const MessagePage(),
-      const ContactPage(),
+      const ContactsPage(),
       const DiscoveryPage(),
       const MinePage(),
     ];
