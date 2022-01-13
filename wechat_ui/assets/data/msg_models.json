@@ -1,18 +1,18 @@
 [
     {
         "username": "谢尔顿",
-        "last_msg": "I do not know"
+        "recent_msg": "I do not know"
     },
     {
         "username": "莱纳德",
-        "last_msg": "I do not know"
+        "recent_msg": "I do not know"
     },
     {
         "username": "霍沃尔德",
-        "last_msg": "I do not know"
+        "recent_msg": "I do not know"
     },
     {
         "username": "拉杰",
-        "last_msg": "I do not know"
+        "recent_msg": "I do not know"
     }
 ]
