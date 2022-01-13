@@ -2,12 +2,13 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-// ignore: import_of_legacy_library_into_null_safe
+import 'package:wechat_ui/utils/utils.dart';
+
 import 'package:azlistview/azlistview.dart';
 import 'package:lpinyin/lpinyin.dart';
-//import 'package:github_language_colors/github_language_colors.dart';
 import 'package:common_utils/common_utils.dart';
 
+/// 封装联系人信息
 class ContactInfo extends ISuspensionBean {
   String name;
   String? tagIndex;
@@ -31,22 +32,20 @@ class ContactInfo extends ISuspensionBean {
     this.firstletter,
   });
 
+  /// 从json生成对象
   ContactInfo.fromJson(Map<String, dynamic> json)
       : name = json['name'],
         img = json['img'],
         id = json['id']?.toString(),
         firstletter = json['firstletter'];
 
+  /// 对象转换为json
   Map<String, dynamic> toJson() => {
-//        'id': id,
         'name': name,
         'img': img,
-//        'firstletter': firstletter,
-//        'tagIndex': tagIndex,
-//        'namePinyin': namePinyin,
-//        'isShowSuspension': isShowSuspension
       };
 
+  /// 获取悬浮标签
   @override
   String getSuspensionTag() => tagIndex!;
 
@@ -54,82 +53,38 @@ class ContactInfo extends ISuspensionBean {
   String toString() => json.encode(this);
 }
 
-class Utils {
-  static String getImgPath(String name, {String format = 'png'}) {
-    return 'assets/images/$name.$format';
-  }
-
-  static void showSnackBar(BuildContext context, String msg) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(msg),
-        duration: const Duration(seconds: 2),
+/// 获取微信风格列表项目
+Widget getWeChatListItem(
+  BuildContext context,
+  ContactInfo model, {
+  double susHeight = 40,
+  Color? defHeaderBgColor,
+}) {
+  DecorationImage? image;
+  return ListTile(
+    leading: Container(
+      width: 36,
+      height: 36,
+      decoration: BoxDecoration(
+        shape: BoxShape.rectangle,
+        borderRadius: BorderRadius.circular(4.0),
+        color: model.bgColor ?? defHeaderBgColor,
+        image: image,
       ),
-    );
-  }
-
-  static Widget getSusItem(BuildContext context, String tag,
-      {double susHeight = 40}) {
-    if (tag == '★') {
-      tag = '★ 热门城市';
-    }
-    return Container(
-      height: susHeight,
-      width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.only(left: 16.0),
-      color: const Color(0xFFF3F4F5),
-      alignment: Alignment.centerLeft,
-      child: Text(
-        tag,
-        softWrap: false,
-        style: const TextStyle(
-          fontSize: 14.0,
-          color: Color(0xFF666666),
-        ),
-      ),
-    );
-  }
-
-  static Widget getWeChatListItem(
-    BuildContext context,
-    ContactInfo model, {
-    double susHeight = 40,
-    Color? defHeaderBgColor,
-  }) {
-    return getWeChatItem(context, model, defHeaderBgColor: defHeaderBgColor);
-  }
-
-  static Widget getWeChatItem(
-    BuildContext context,
-    ContactInfo model, {
-    Color? defHeaderBgColor,
-  }) {
-    DecorationImage? image;
-    return ListTile(
-      leading: Container(
-        width: 36,
-        height: 36,
-        decoration: BoxDecoration(
-          shape: BoxShape.rectangle,
-          borderRadius: BorderRadius.circular(4.0),
-          color: model.bgColor ?? defHeaderBgColor,
-          image: image,
-        ),
-        child: model.iconData == null
-            ? null
-            : Icon(
-                model.iconData,
-                color: Colors.white,
-                size: 20,
-              ),
-      ),
-      title: Text(model.name),
-      onTap: () {
-        LogUtil.e("onItemClick : $model");
-        Utils.showSnackBar(context, 'onItemClick : ${model.name}');
-      },
-    );
-  }
+      child: model.iconData == null
+          ? null
+          : Icon(
+              model.iconData,
+              color: Colors.white,
+              size: 20,
+            ),
+    ),
+    title: Text(model.name),
+    onTap: () {
+      LogUtil.e("onItemClick : $model");
+      showSnackBar(context, 'onItemClick : ${model.name}');
+    },
+  );
 }
 
 class ContactsPage extends StatefulWidget {
@@ -143,6 +98,7 @@ class _ContactsPageState extends State<ContactsPage> {
   List<ContactInfo> contactList = [];
   List<ContactInfo> topList = [];
 
+  /// 第一次创建时加载数据
   @override
   void initState() {
     super.initState();
@@ -169,8 +125,9 @@ class _ContactsPageState extends State<ContactsPage> {
     loadData();
   }
 
+  /// 联系人列表数据
   void loadData() async {
-    //加载联系人列表
+    //从json文件中载入联系人数据
     rootBundle.loadString('assets/data/car_models.json').then((value) {
       List list = json.decode(value);
       for (var v in list) {
@@ -180,8 +137,10 @@ class _ContactsPageState extends State<ContactsPage> {
     });
   }
 
+  /// 按规则处理联系人列表，包括拼音首字母排序
   void _handleList(List<ContactInfo> list) {
     if (list.isEmpty) return;
+    // 获取名称拼音的首字母
     for (int i = 0, length = list.length; i < length; i++) {
       String pinyin = PinyinHelper.getPinyinE(list[i].name);
       String tag = pinyin.substring(0, 1).toUpperCase();
@@ -192,15 +151,13 @@ class _ContactsPageState extends State<ContactsPage> {
         list[i].tagIndex = "#";
       }
     }
-    // A-Z sort.
+    // 从A到Z排序
     SuspensionUtil.sortListBySuspensionTag(contactList);
-
-    // show sus tag.
+    // 显示悬浮标签
     SuspensionUtil.setShowSuspensionStatus(contactList);
-
-    // add topList.
+    // 插入头部元素
     contactList.insertAll(0, topList);
-
+    // 触发UI重绘
     setState(() {});
   }
 
@@ -222,7 +179,7 @@ class _ContactsPageState extends State<ContactsPage> {
         itemCount: contactList.length,
         itemBuilder: (BuildContext context, int index) {
           ContactInfo model = contactList[index];
-          return Utils.getWeChatListItem(
+          return getWeChatListItem(
             context,
             model,
             defHeaderBgColor: const Color(0xFFE5E5E5),
@@ -234,9 +191,9 @@ class _ContactsPageState extends State<ContactsPage> {
           if ('↑' == model.getSuspensionTag()) {
             return Container();
           }
-          return Utils.getSusItem(context, model.getSuspensionTag());
+          return getSusItem(context, model.getSuspensionTag());
         },
-        indexBarData: const ['↑', '☆', ...kIndexBarData],
+        indexBarData: const ['↑', ...kIndexBarData],
         indexBarOptions: IndexBarOptions(
           needRebuild: true,
           ignoreDragCancel: true,
@@ -247,7 +204,7 @@ class _ContactsPageState extends State<ContactsPage> {
           indexHintHeight: 100 / 2,
           indexHintDecoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(Utils.getImgPath('ic_index_bar_bubble_gray')),
+              image: AssetImage(getImgPath('ic_index_bar_bubble_gray')),
               fit: BoxFit.contain,
             ),
           ),

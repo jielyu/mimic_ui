@@ -64,7 +64,7 @@ class BottonNavBarFramework extends StatelessWidget {
 
   List<Widget> _buildScreens() {
     return [
-      const MessagePage(),
+      const MessagesPage(),
       const ContactsPage(),
       const DiscoveryPage(),
       const MinePage(),

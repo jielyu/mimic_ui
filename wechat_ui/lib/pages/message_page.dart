@@ -1,25 +1,35 @@
 import 'package:flutter/material.dart';
 
-class MessagePage extends StatelessWidget {
-  const MessagePage({Key? key}) : super(key: key);
+class MessagesPage extends StatefulWidget {
+  const MessagesPage({Key? key}) : super(key: key);
 
+  @override
+  _MessagesPageState createState() => _MessagesPageState();
+}
+
+class _MessagesPageState extends State<MessagesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: const Color(0xFFEDEDED),
         title: const Center(
-          child: Text("消息"),
+          child: Text(
+            "消息",
+            style: TextStyle(color: Color(0xFF171717)),
+          ),
         ),
       ),
       body: ListView(
         children: const [
           Text(
-            "message1",
-            style: TextStyle(fontSize: 40),
+            "消息1",
+            style: TextStyle(fontSize: 20),
           ),
           Text(
-            "message2",
-            style: TextStyle(fontSize: 40),
+            "消息2",
+            style: TextStyle(fontSize: 20),
           ),
         ],
       ),
