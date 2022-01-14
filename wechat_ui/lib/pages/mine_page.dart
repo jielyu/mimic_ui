@@ -102,7 +102,8 @@ class MinePage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          const SizedBox(
+          Container(
+            color: getItemBgColor(),
             height: 60,
           ),
           Container(
