@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:wechat_ui/utils/utils.dart';
 
 class MinePage extends StatelessWidget {
   const MinePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Log.info("Mine Page build", StackTrace.current);
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,

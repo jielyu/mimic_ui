@@ -14,11 +14,22 @@ class HomePage extends StatelessWidget {
   }
 }
 
-final PersistentTabController _controller =
-    PersistentTabController(initialIndex: 0);
-
-class BottonNavBarFramework extends StatelessWidget {
+class BottonNavBarFramework extends StatefulWidget {
   const BottonNavBarFramework({Key? key}) : super(key: key);
+
+  @override
+  _BottonNavBarFrameworkState createState() => _BottonNavBarFrameworkState();
+}
+
+class _BottonNavBarFrameworkState extends State<BottonNavBarFramework> {
+  final PersistentTabController _controller =
+      PersistentTabController(initialIndex: 0);
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

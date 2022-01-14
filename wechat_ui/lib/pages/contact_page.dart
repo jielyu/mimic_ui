@@ -163,6 +163,7 @@ class _ContactsPageState extends State<ContactsPage> {
 
   @override
   Widget build(BuildContext context) {
+    Log.info("Contacts Page build", StackTrace.current);
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,

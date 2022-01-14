@@ -83,7 +83,17 @@ class _MessagesPageState extends State<MessagesPage> {
             return Column(
               children: [
                 ListTile(
-                  leading: const Icon(Icons.person),
+                  leading: Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                            style: BorderStyle.solid, color: Colors.blue),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(3))),
+                    child: const Icon(
+                      Icons.person,
+                      size: 40,
+                    ),
+                  ),
                   title: Text(item.name),
                   subtitle: Text(item.recentMsg),
                   onTap: () {
