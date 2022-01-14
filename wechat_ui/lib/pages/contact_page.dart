@@ -179,10 +179,23 @@ class _ContactsPageState extends State<ContactsPage> {
         itemCount: contactList.length,
         itemBuilder: (BuildContext context, int index) {
           ContactInfo model = contactList[index];
-          return getWeChatListItem(
-            context,
-            model,
-            defHeaderBgColor: const Color(0xFFE5E5E5),
+          return Column(
+            children: [
+              getWeChatListItem(
+                context,
+                model,
+                defHeaderBgColor: const Color(0xFFE5E5E5),
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Container(
+                  color: const Color.fromARGB(255, 231, 228, 228),
+                  height: 1,
+                  width: 350,
+                  alignment: Alignment.centerRight,
+                ),
+              )
+            ],
           );
         },
         physics: const BouncingScrollPhysics(),

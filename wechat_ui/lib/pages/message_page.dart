@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'package:wechat_ui/utils/utils.dart';
+
 /// 用于存储消息相关的内容
 class MessageInfo {
   String name; // 显示的用户名
@@ -57,34 +59,50 @@ class _MessagesPageState extends State<MessagesPage> {
       // for (var v in msgList) {
       //   print(v);
       // }
+      setState(() {});
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    Log.info("Message Page build", StackTrace.current);
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: const Color(0xFFEDEDED),
-        title: const Center(
-          child: Text(
-            "消息",
-            style: TextStyle(color: Color(0xFF171717)),
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: const Color(0xFFEDEDED),
+          title: const Center(
+            child: Text(
+              "消息",
+              style: TextStyle(color: Color(0xFF171717)),
+            ),
           ),
         ),
-      ),
-      body: ListView(
-        children: const [
-          Text(
-            "消息1",
-            style: TextStyle(fontSize: 20),
-          ),
-          Text(
-            "消息2",
-            style: TextStyle(fontSize: 20),
-          ),
-        ],
-      ),
-    );
+        body: ListView.builder(
+          itemBuilder: (ctx, i) {
+            var item = msgList[i];
+            return Column(
+              children: [
+                ListTile(
+                  leading: const Icon(Icons.person),
+                  title: Text(item.name),
+                  subtitle: Text(item.recentMsg),
+                  onTap: () {
+                    Log.info(item.name, StackTrace.current);
+                  },
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Container(
+                    color: const Color.fromARGB(255, 231, 228, 228),
+                    height: 1,
+                    width: 350,
+                    alignment: Alignment.centerRight,
+                  ),
+                )
+              ],
+            );
+          },
+          itemCount: msgList.length,
+        ));
   }
 }
