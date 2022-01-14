@@ -19,7 +19,7 @@ class DiscoveryPage extends StatelessWidget {
           ),
         ),
       ),
-      body: const Text("discovery"),
+      body: const Text(""),
     );
   }
 }

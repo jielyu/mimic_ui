@@ -104,6 +104,7 @@ class _MessagesPageState extends State<MessagesPage> {
                   ),
                   onTap: () {
                     Log.info(item.name, StackTrace.current);
+                    showSnackBar(context, 'onItemClick : ${item.name}');
                   },
                 ),
                 Align(
