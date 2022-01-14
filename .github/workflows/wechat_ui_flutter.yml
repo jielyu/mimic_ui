@@ -34,9 +34,6 @@ jobs:
       with:
         channel: 'master' # 'dev', 'alpha', default to: 'stable'
         #flutter-version: '2.6.x' # you can also specify exact version of flutter
-    
-    # repair cache
-    - run: flutter pub cache repair 
 
     # Get flutter dependencies.
     - run: flutter pub get
