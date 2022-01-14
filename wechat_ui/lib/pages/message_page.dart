@@ -94,8 +94,14 @@ class _MessagesPageState extends State<MessagesPage> {
                       size: 40,
                     ),
                   ),
-                  title: Text(item.name),
-                  subtitle: Text(item.recentMsg),
+                  title: Text(
+                    item.name,
+                    style: const TextStyle(overflow: TextOverflow.ellipsis),
+                  ),
+                  subtitle: Text(
+                    item.recentMsg,
+                    style: const TextStyle(overflow: TextOverflow.ellipsis),
+                  ),
                   onTap: () {
                     Log.info(item.name, StackTrace.current);
                   },
