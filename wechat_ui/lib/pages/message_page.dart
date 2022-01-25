@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:wechat_ui/utils/utils.dart';
-import 'package:wechat_ui/pages/conversation_page.dart';
+import 'package:wechat_ui/pages/chat_page.dart';
 
 /// 用于存储消息相关的内容
 class MessageInfo {
@@ -79,8 +79,8 @@ class _MessagesPageState extends State<MessagesPage> {
           ),
         ),
         body: ListView.builder(
-          itemBuilder: (ctx, i) {
-            var item = msgList[i];
+          itemBuilder: (context, index) {
+            var item = msgList[index];
             return Column(
               children: [
                 ListTile(
@@ -106,10 +106,15 @@ class _MessagesPageState extends State<MessagesPage> {
                   onTap: () {
                     // Log.info(item.name, StackTrace.current);
                     // showSnackBar(context, 'onItemClick : ${item.name}');
-                    Navigator.push(
-                        context,
+                    Navigator.of(context, rootNavigator: true).push(
                         MaterialPageRoute(
+                            fullscreenDialog: true,
                             builder: (context) => DialogPage(id: item.name)));
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         fullscreenDialog: true,
+                    //         builder: (context) => DialogPage(id: item.name)));
                   },
                 ),
                 Align(
