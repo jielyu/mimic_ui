@@ -109,15 +109,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  github_language_colors:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: HEAD
-      resolved-ref: b4f88207ebc0c5dcc8baa1676a0fd7796974173a
-      url: "git://github.com/Sky24n/github_language_colors.git"
-    source: git
-    version: "2.0.0"
   lints:
     dependency: transitive
     description:

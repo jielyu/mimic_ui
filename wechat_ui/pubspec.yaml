@@ -40,9 +40,6 @@ dependencies:
   azlistview: ^2.0.0-nullsafety.0
   # 汉字转拼音
   lpinyin: ^2.0.3
-  github_language_colors:
-    git:
-      url: git://github.com/Sky24n/github_language_colors.git
 
 dependency_overrides:
   decimal: 1.5.0
