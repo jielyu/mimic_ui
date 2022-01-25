@@ -214,6 +214,7 @@ class _DialogPageState extends State<DialogPage> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: avoid_print
     print("start chat page");
     return Scaffold(
       appBar: AppBar(
@@ -225,7 +226,7 @@ class _DialogPageState extends State<DialogPage> {
       ),
       body: Column(
         children: [
-          TalkList(),
+          const TalkList(),
           ChatInputForm(scrollController: _scrollController)
         ],
       ),
