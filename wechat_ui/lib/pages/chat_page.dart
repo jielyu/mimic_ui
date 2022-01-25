@@ -72,7 +72,7 @@ class TalkList extends StatefulWidget {
 
 class _TalkListState extends State<TalkList> {
   final ScrollController scrollController =
-      ScrollController(initialScrollOffset: 18000);
+      ScrollController(initialScrollOffset: 0);
   @override
   void dispose() {
     scrollController.dispose();
@@ -96,19 +96,43 @@ class _TalkListState extends State<TalkList> {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      scrollController.jumpTo(scrollController.position.maxScrollExtent);
+    });
     return Expanded(
       child: Container(
           color: const Color(0xfff5f5f5),
           margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
           child: ListView.builder(
+            // reverse: true,
             itemBuilder: (BuildContext context, int index) {
-              return Container(
-                child: ChatItemWidget(
-                    msgContent: "测试消息测试消息测试消息测试消息测试消息测试消息测试消息.hello_" +
-                        index.toString(),
-                    index: index),
+              var item = <Widget>[];
+              if (index == 0) {
+                bool isLoading = true;
+                final indicator = false
+                    // ignore: dead_code
+                    ? const Center(child: Text('一一没有更多消息了一一'))
+                    : Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Center(
+                          child: Opacity(
+                            // ignore: dead_code
+                            opacity: isLoading ? 1.0 : 0.0,
+                            child: const CircularProgressIndicator(),
+                          ),
+                        ),
+                      );
+                item.add(indicator);
+              }
+              final chatItem = ChatItemWidget(
+                  msgContent:
+                      "测试消息测试消息测试消息测试消息测试消息测试消息测试消息.hello_" + index.toString(),
+                  index: index);
+              item.add(chatItem);
+              // ignore: avoid_unnecessary_containers
+              return Column(
+                children: item,
               );
-              // return Text("hello_" + index.toString());
             },
             itemCount: 50,
             controller: scrollController,
@@ -137,7 +161,7 @@ class _ChatInputFormState extends State<ChatInputForm> {
       key: _formKey,
       child: Container(
         color: const Color(0xfff5f5f5),
-        //color: Colors.blue,
+        margin: const EdgeInsets.fromLTRB(10, 3, 10, 3),
         child: TextFormField(
           autofocus: false,
           maxLength: 3,
