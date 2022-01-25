@@ -10,8 +10,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: "MimicWechat",
+      theme: ThemeData(
+          primaryColor: const Color(0xFFEDEDED),
+          textTheme:
+              const TextTheme(headline5: TextStyle(color: Color(0xFF171717)))),
       //routes: Map(),
       home: HomePage(),
     );

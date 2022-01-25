@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:wechat_ui/utils/utils.dart';
+import 'package:wechat_ui/pages/conversation_page.dart';
 
 /// 用于存储消息相关的内容
 class MessageInfo {
@@ -69,11 +70,11 @@ class _MessagesPageState extends State<MessagesPage> {
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: const Color(0xFFEDEDED),
-          title: const Center(
+          backgroundColor: Theme.of(context).primaryColor,
+          title: Center(
             child: Text(
               "消息",
-              style: TextStyle(color: Color(0xFF171717)),
+              style: Theme.of(context).textTheme.headline5,
             ),
           ),
         ),
@@ -103,8 +104,12 @@ class _MessagesPageState extends State<MessagesPage> {
                     style: const TextStyle(overflow: TextOverflow.ellipsis),
                   ),
                   onTap: () {
-                    Log.info(item.name, StackTrace.current);
-                    showSnackBar(context, 'onItemClick : ${item.name}');
+                    // Log.info(item.name, StackTrace.current);
+                    // showSnackBar(context, 'onItemClick : ${item.name}');
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DialogPage(id: item.name)));
                   },
                 ),
                 Align(

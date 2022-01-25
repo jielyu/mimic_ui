@@ -11,11 +11,11 @@ class DiscoveryPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: const Color(0xFFEDEDED),
-        title: const Center(
+        backgroundColor: Theme.of(context).primaryColor,
+        title: Center(
           child: Text(
             "发现页",
-            style: TextStyle(color: Color(0xFF171717)),
+            style: Theme.of(context).textTheme.headline5,
           ),
         ),
       ),
