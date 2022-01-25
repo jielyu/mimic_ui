@@ -84,6 +84,7 @@ class MinePage extends StatelessWidget {
           color: iconColor,
         ),
         title: Text(name),
+        trailing: const Icon(Icons.chevron_right),
       ),
     );
   }
