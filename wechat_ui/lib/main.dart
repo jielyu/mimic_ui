@@ -2,10 +2,23 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'pages/home_page.dart';
 
+// 定制标题栏
 import 'package:bitsdojo_window/bitsdojo_window.dart';
+// 移动端桌面图标右上角标
+import 'package:flutter_app_badger/flutter_app_badger.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
+
+  // 针对移动平台
+  if (Platform.isIOS || Platform.isAndroid) {
+    // 增加桌面图标右上角消息数量提醒
+    bool res = await FlutterAppBadger.isAppBadgeSupported();
+    if (res) {
+      FlutterAppBadger.updateBadgeCount(9);
+    }
+  }
+
   // 针对桌面平台的设置
   if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
     doWhenWindowReady(() {
