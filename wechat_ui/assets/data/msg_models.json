@@ -1,34 +1,42 @@
 [
     {
         "username": "谢尔顿",
+        "en_name": "Sheldon",
         "recent_msg": "I do not know, I do not know, I do not know, I do not know, I do not know"
     },
     {
         "username": "莱纳德",
+        "en_name": "Leonard",
         "recent_msg": "I know"
     },
     {
         "username": "霍沃尔德",
+        "en_name": "Howard",
         "recent_msg": "I do not want to know"
     },
     {
         "username": "拉杰",
+        "en_name": "Rajesh",
         "recent_msg": "I do know"
     },
     {
         "username": "佩妮",
+        "en_name": "Penny",
         "recent_msg": "I ..."
     },
     {
         "username": "伯尼黛特",
+        "en_name": "Bernadette",
         "recent_msg": "I have to know"
     },
     {
         "username": "艾米",
+        "en_name": "Amy",
         "recent_msg": "I know, I know"
     },
     {
         "username": "斯图尔特",
+        "en_name": "Stuart",
         "recent_msg": "I know that I do not know"
     }
 ]

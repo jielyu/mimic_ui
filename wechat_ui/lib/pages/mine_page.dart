@@ -5,15 +5,16 @@ class MinePage extends StatelessWidget {
   const MinePage({Key? key}) : super(key: key);
 
   Widget buildPortraitItem(BuildContext context) {
-    return const SizedBox(
+    return SizedBox(
       height: 60,
       child: ListTile(
-        leading: Icon(
-          Icons.person,
-          size: 60,
-        ),
-        title: Text("青衣极客"),
-        subtitle: Text("微信号: bluegeek"),
+        leading: Image.asset("assets/images/portraits/bluegeek.png"),
+        // leading: Icon(
+        //   Icons.person,
+        //   size: 60,
+        // ),
+        title: const Text("青衣极客"),
+        subtitle: const Text("微信号: bluegeek"),
       ),
     );
   }

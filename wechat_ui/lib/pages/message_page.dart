@@ -8,16 +8,18 @@ import 'package:wechat_ui/pages/chat_page.dart';
 /// 用于存储消息相关的内容
 class MessageInfo {
   String name; // 显示的用户名
+  String enName; // 英文名
   String recentMsg; // 最近一条消息
   DateTime? recentTime; // 最近消息的时间
 
-  MessageInfo(this.name, this.recentMsg) {
+  MessageInfo(this.name, this.recentMsg, {this.enName = ""}) {
     recentTime = DateTime.now();
   }
 
   // 从json数据创建对象
   MessageInfo.fromJson(Map<String, dynamic> jsonObj)
       : name = jsonObj['username'],
+        enName = jsonObj['en_name'],
         recentMsg = jsonObj['recent_msg'] {
     recentTime = DateTime.now();
   }
@@ -77,6 +79,19 @@ class _MessagesPageState extends State<MessagesPage> {
               style: Theme.of(context).textTheme.headline5,
             ),
           ),
+          actions: [
+            Container(
+              margin: const EdgeInsets.all(10),
+              child: const Icon(
+                Icons.search,
+                color: Colors.black,
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.all(10),
+              child: const Icon(Icons.add_circle_outline, color: Colors.black),
+            )
+          ],
         ),
         body: ListView.builder(
           itemBuilder: (context, index) {
@@ -85,15 +100,19 @@ class _MessagesPageState extends State<MessagesPage> {
               children: [
                 ListTile(
                   leading: Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            style: BorderStyle.solid, color: Colors.blue),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(3))),
-                    child: const Icon(
-                      Icons.person,
-                      size: 40,
+                    decoration: const BoxDecoration(
+                        // border: Border.all(
+                        //     style: BorderStyle.solid, color: Colors.blue),
+                        borderRadius: BorderRadius.all(Radius.circular(5))),
+                    child: SizedBox(
+                      height: 40,
+                      child: Image.asset(
+                          "assets/images/portraits/" + item.enName + ".png"),
                     ),
+                    // child: const Icon(
+                    //   Icons.person,
+                    //   size: 40,
+                    // ),
                   ),
                   title: Text(
                     item.name,
