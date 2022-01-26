@@ -1,5 +1,10 @@
 output: dist/
 releases:
+# 用于在macos平台完成macos、ios和android三个平台的打包
+# 注意： macos桌面打包dmg必须先运行 npm install -g appdmg 安装打包工具
+# 指令： flutter_distributor release --name prod
+# macos-dmg指令： flutter_distributor package --platform macos --targets dmg
+# ios-ipa指令： flutter_distributor package --platform ios --targets ipa --build-export-options-plist  ios/ExportOptions.plist
   - name: prod
     jobs:
       - name: release-macos-dmg
@@ -25,5 +30,20 @@ releases:
           target: apk
           build_args:
             target-platform: android-arm,android-arm64
+            dart-define:
+              APP_ENV: production
+
+# 用于在windows平台打包exe安装包
+# 注意： 必须先安装 Inno Setup 6
+# 注意： 必须使用git的bash运行指令
+# 指令：  flutter_distributor.bat release --name win
+# 指令：  flutter_distributor package --platform windows --targets exe
+  - name: win
+    jobs:
+      - name: release-win-exe
+        package:
+          platform: windows
+          target: exe
+          build_args:
             dart-define:
               APP_ENV: production
