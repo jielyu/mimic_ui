@@ -73,6 +73,7 @@ class TalkList extends StatefulWidget {
 class _TalkListState extends State<TalkList> {
   final ScrollController scrollController =
       ScrollController(initialScrollOffset: 0);
+  final numItems = 50;
   @override
   void dispose() {
     scrollController.dispose();
@@ -96,16 +97,17 @@ class _TalkListState extends State<TalkList> {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
-      scrollController.jumpTo(scrollController.position.maxScrollExtent);
-    });
+    // WidgetsBinding.instance!.addPostFrameCallback((_) {
+    //   scrollController.jumpTo(scrollController.position.maxScrollExtent);
+    // });
     return Expanded(
       child: Container(
           color: const Color(0xfff5f5f5),
           margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
           child: ListView.builder(
-            // reverse: true,
+            reverse: true,
             itemBuilder: (BuildContext context, int index) {
+              index = numItems - (index + 1);
               var item = <Widget>[];
               if (index == 0) {
                 bool isLoading = true;
@@ -134,7 +136,7 @@ class _TalkListState extends State<TalkList> {
                 children: item,
               );
             },
-            itemCount: 50,
+            itemCount: numItems,
             controller: scrollController,
           )),
     );

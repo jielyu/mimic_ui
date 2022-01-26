@@ -12,8 +12,8 @@ class MinePage extends StatelessWidget {
           Icons.person,
           size: 60,
         ),
-        title: Text("放浪不羁"),
-        subtitle: Text("微信号: fanglangbuji"),
+        title: Text("青衣极客"),
+        subtitle: Text("微信号: bluegeek"),
       ),
     );
   }
