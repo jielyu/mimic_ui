@@ -225,6 +225,15 @@ class _DialogPageState extends State<DialogPage> {
           style: Theme.of(context).textTheme.headline5,
         ),
         backgroundColor: Theme.of(context).primaryColor,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: Column(
         children: [
