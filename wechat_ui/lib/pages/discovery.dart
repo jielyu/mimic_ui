@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wechat_ui/pages/top_actions.dart';
 
 import 'package:wechat_ui/utils/utils.dart';
 
@@ -33,6 +34,7 @@ class DiscoveryPage extends StatelessWidget {
     Log.info("Discovery Page build", StackTrace.current);
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         automaticallyImplyLeading: false,
         backgroundColor: Theme.of(context).primaryColor,
         title: Center(
@@ -41,6 +43,8 @@ class DiscoveryPage extends StatelessWidget {
             style: Theme.of(context).textTheme.headline5,
           ),
         ),
+        leading: const Text(""),
+        actions: getTopActions(),
       ),
       body: Column(
         children: [

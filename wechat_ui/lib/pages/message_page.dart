@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 
 import 'package:wechat_ui/utils/utils.dart';
 import 'package:wechat_ui/pages/chat_page.dart';
+import 'package:wechat_ui/pages/top_actions.dart';
 
 /// 用于存储消息相关的内容
 class MessageInfo {
@@ -71,6 +72,7 @@ class _MessagesPageState extends State<MessagesPage> {
     Log.info("Message Page build", StackTrace.current);
     return Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           automaticallyImplyLeading: false,
           backgroundColor: Theme.of(context).primaryColor,
           title: Center(
@@ -79,19 +81,8 @@ class _MessagesPageState extends State<MessagesPage> {
               style: Theme.of(context).textTheme.headline5,
             ),
           ),
-          actions: [
-            Container(
-              margin: const EdgeInsets.all(10),
-              child: const Icon(
-                Icons.search,
-                color: Colors.black,
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.all(10),
-              child: const Icon(Icons.add_circle_outline, color: Colors.black),
-            )
-          ],
+          leading: const Text(""),
+          actions: getTopActions(),
         ),
         body: ListView.builder(
           itemBuilder: (context, index) {

@@ -7,6 +7,7 @@ import 'package:wechat_ui/utils/utils.dart';
 import 'package:azlistview/azlistview.dart';
 import 'package:lpinyin/lpinyin.dart';
 import 'package:common_utils/common_utils.dart';
+import 'package:wechat_ui/pages/top_actions.dart';
 
 /// 封装联系人信息
 class ContactInfo extends ISuspensionBean {
@@ -166,6 +167,7 @@ class _ContactsPageState extends State<ContactsPage> {
     Log.info("Contacts Page build", StackTrace.current);
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         automaticallyImplyLeading: false,
         backgroundColor: Theme.of(context).primaryColor,
         title: Center(
@@ -174,6 +176,8 @@ class _ContactsPageState extends State<ContactsPage> {
             style: Theme.of(context).textTheme.headline5,
           ),
         ),
+        leading: const Text(""),
+        actions: getTopActions(),
       ),
       body: AzListView(
         data: contactList,
