@@ -4,7 +4,7 @@ import bitsdojo_window_macos
 
 class MainFlutterWindow: BitsdojoWindow {
   override func bitsdojo_window_configure() -> UInt {
-    return 0
+    return BDW_HIDE_ON_STARTUP
   }
   override func awakeFromNib() {
     let flutterViewController = FlutterViewController.init()
