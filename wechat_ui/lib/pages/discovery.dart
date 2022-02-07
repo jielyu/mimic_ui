@@ -74,7 +74,8 @@ class DiscoveryPage extends StatelessWidget {
           Container(
             margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
             color: getItemBgColor(),
-            child: buildTextButton(context, "小程序", Icons.pix, Colors.purple),
+            child: buildTextButton(
+                context, "小程序", Icons.pending_sharp, Colors.purple),
           ),
         ],
       ),

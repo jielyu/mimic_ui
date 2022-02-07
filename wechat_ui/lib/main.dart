@@ -49,6 +49,7 @@ class MyApp extends StatelessWidget {
               const TextTheme(headline5: TextStyle(color: Color(0xFF171717)))),
       //routes: Map(),
       home: const HomePage(),
+      // home: const Text("123"),
     );
   }
 }

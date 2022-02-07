@@ -1,16 +1,15 @@
-# wechat_ui
+# Flutter模仿微信UI
 
-A new Flutter project.
+用于测试Flutter多端一致性和运行时性能
 
-## Getting Started
+## 样例展示
 
-This project is a starting point for a Flutter application.
+![](images/01.png)
 
-A few resources to get you started if this is your first Flutter project:
+![](images/02.png)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+![](images/03.png)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![](images/04.png)
+
+![](images/05.png)

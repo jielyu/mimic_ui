@@ -3,7 +3,7 @@
 
 ## 1. 微信UI界面
 
-[微信UI](wechat_ui/README.md)
+[微信UI](wechat_ui/)
 
 ![status](https://github.com/jielyu/mimic_ui/actions/workflows/wechat_ui_flutter.yml/badge.svg)
 
